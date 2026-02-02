@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataDoodles: The price of truth</title>
+    
+    <!-- Connecting fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/script.js"></script>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+</head>
+<body class="bg-paper min-h-screen relative overflow-x-hidden selection:bg-redaction selection:text-paper">
+
+    <div class="paper-texture"></div>
+
+    <!-- HEADER -->
+    <header class="border-b-2 border-ink sticky top-0 z-40 bg-paper/95 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a class="flex items-center gap-3 cursor-pointer" href="index.html">
+                <div class="border-2 border-ink w-10 h-10 flex items-center justify-center bg-ink text-paper font-serif font-bold text-lg">
+                    #
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-lg leading-none tracking-tight uppercase">Case № 2026</span>
+                    <span class="text-[0.8rem] uppercase tracking-widest text-stamp">Top Secret</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex gap-2">
+                <a href="index.html" id="nav-home" class="nav-tab">00. overview</a>
+                <a href="block1.html" id="nav-block1" class="nav-tab">01. location</a>
+                <a href="block2.html" id="nav-block2" class="nav-tab">02. motives</a>
+                <a href="block3.html" id="nav-block3" class="nav-tab active">03. chronicle</a>
+            </nav>
+
+            <button class="md:hidden text-ink">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="flex-grow container mx-auto px-4 py-12 relative z-10 max-w-6xl">
+        <!-- === PAGE: BLOCK 3 (TIME) === -->
+        <section id="page-block3" class="fade-in">
+            <div class="mb-8 border-b-2 border-ink pb-4">
+                <span class="font-mono text-base text-stamp uppercase tracking-widest">Block 03</span>
+                <h2 class="font-serif text-4xl font-bold text-ink uppercase">Time Slice</h2>
+            </div>
+
+             <div class="mb-8 report-text max-w-4xl border-l-4 border-stamp pl-6 py-2">
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi asperiores accusamus necessitatibus quae labore, non aut dolorum repudiandae autem possimus. 
+                </p>
+                <p>
+                    <span class="font-bold">Hint:</span> Use the brush tool to select a specific time range and see how the data changes within that period.
+                </p>
+            </div>
+
+            <div class="w-full h-[250px] mb-8 evidence-card p-4 cursor-pointer hover:border-stamp transition-colors">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-serif font-bold text-sm uppercase text-gray-500">Total murders by year</h3>
+                    <span class="text-xs font-mono bg-ink text-paper px-2">DRAG TO SELECT</span>
+                </div>
+                
+                <div class="h-full border-b border-ink relative chart-placeholder">
+                    <svg viewBox="0 0 400 100" class="w-full h-full" preserveAspectRatio="none">
+                        <polyline points="0,90 20,85 40,40 60,30 80,45 100,20 120,60 140,50 160,80 180,90 200,40 220,90 300,50 350,80 400,90" 
+                                  fill="none" stroke="#2b2b2b" stroke-width="1.5" />
+                        <circle cx="100" cy="20" r="3" fill="#b71c1c" />
+                        <text x="100" y="15" font-family="Courier Prime" font-size="10" fill="#b71c1c">IRAQ WAR PEAK</text>
+                        <rect x="190" y="10" width="120" height="80" fill="#b71c1c" fill-opacity="0.05" stroke="#b71c1c" stroke-width="1" stroke-dasharray="4" />
+                    </svg>
+                    <div class="absolute top-2 left-[57%] bg-stamp text-white text-xs px-2 font-mono shadow-md">2012 — 2016</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-[400px]">
+                <div class="evidence-card h-full p-4 relative flex flex-col cursor-pointer hover:border-stamp transition-colors">
+                    <h3 class="font-serif font-bold border-b border-ink mb-4 pb-1">Epicentre (in the selected period)</h3>
+                    <div class="flex-grow flex items-center justify-center chart-placeholder relative">
+                         <div class="rounded-full border border-ink w-24 h-24 flex items-center justify-center bg-paper shadow-md z-10 font-bold font-serif text-lg">SYRIA</div>
+                         <div class="rounded-full border border-ink w-16 h-16 flex items-center justify-center bg-paper shadow-md -ml-6 mt-12 text-xs">FRANCE</div>
+                         <div class="rounded-full border border-ink w-12 h-12 flex items-center justify-center bg-paper shadow-md -ml-12 -mt-16 text-[0.6rem]">YEMEN</div>
+                    </div>
+                </div>
+
+                <div class="evidence-card h-full p-4 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] flex flex-col cursor-pointer hover:border-stamp transition-colors">
+                    <h3 class="font-serif font-bold border-b border-ink mb-4 pb-1">Registry of Victims</h3>
+                    <div class="flex-grow flex flex-wrap gap-2 content-start overflow-hidden pt-2 opacity-70">
+                        <script>
+                            for(let i=0; i<150; i++) {
+                                let color = Math.random() > 0.9 ? 'bg-stamp' : 'bg-ink';
+                                document.write(`<div class="w-2 h-2 ${color} rounded-full hover:scale-150 transition-transform cursor-help" title="Case #${2400+i}"></div>`);
+                            }
+                        </script>
+                    </div>
+                    <div class="mt-auto pt-2 text-center text-xs font-mono border-t border-dashed border-gray-400">
+                        *Red dots: foreign nationals
+                    </div>
+                </div>
+
+                <div class="evidence-card h-full p-4 flex flex-col cursor-pointer hover:border-stamp transition-colors">
+                    <h3 class="font-serif font-bold border-b border-ink mb-4 pb-1">Gender Composition</h3>
+                    <div class="flex-grow flex flex-col items-center justify-center chart-placeholder">
+                        <div class="w-32 h-32 rounded-full border-[10px] border-ink border-r-stamp transform rotate-45"></div>
+                        <div class="flex gap-4 mt-4 text-xs font-mono">
+                            <span class="text-ink font-bold">93% MALE</span>
+                            <span class="text-stamp font-bold">7% FEMALE</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center font-mono mt-2 opacity-70">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, ipsam?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sheets navigation -->
+        <div class="mt-20 border-t border-dashed border-ink/50 pt-8 flex justify-between items-center">
+            <!-- Back -->
+            <a href="block1.html" class="group flex items-center gap-4 text-left hover:text-ink/70 transition-colors">
+                <div class="border-2 border-current p-2 rounded-full group-hover:bg-ink group-hover:text-white transition-all">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[0.75rem] font-mono uppercase tracking-widest opacity-60">Back</span>
+                    <span class="font-serif font-bold text-lg uppercase">BLOCK 02: THREAT LEVEL</span>
+                </div>
+            </a>
+
+            <!-- To the beginning -->
+            <a href="index.html" class="group flex items-center gap-4 text-right hover:text-ink transition-colors">
+                <div class="flex flex-col">
+                    <span class="text-[0.65rem] font-mono uppercase tracking-widest opacity-60">Close viewing</span>
+                    <span class="font-serif font-bold text-xl uppercase">Close Case</span>
+                </div>
+                <div class="border-2 border-current p-2 rounded-full group-hover:bg-ink group-hover:text-white transition-all">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-ink text-paper py-8 border-t-4 border-stamp relative z-20">
+        <div class="container mx-auto px-4 font-mono text-xs">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-[0.9rem] font-bold uppercase mb-4 text-gray-400">/// Case Closed ///</h4>
+                    <p class="max-w-xs opacity-70">
+                        This project is educational. Any similarities to real investigations are not coincidental. The data is public.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-[0.9rem] font-bold uppercase mb-4 text-gray-400">Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://github.com/ZeyAzee/DataDoodles-PoT" class="hover:text-stamp underline decoration-dotted">GitHub Repository</a></li>
+                        <li><a href="https://cpj.org/data" class="hover:text-stamp underline decoration-dotted">Original Data [CPJ]</a></li>
+                    </ul>
+                </div>
+                <div class="text-right flex flex-col justify-end">
+                    <div class="stamp-box border-white text-white rotate-0 inline-block mb-2 w-fit ml-auto">VERIFIED</div>
+                    <p class="opacity-50">&copy; 2026 Investigative Group</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
