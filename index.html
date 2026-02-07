@@ -151,25 +151,92 @@
             </div>
 
             <div id="methodology" class="border-t border-dashed border-ink/50 pt-8 mt-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 font-mono text-base">
-                    <div>
-                        <p class="text-[1.3rem] uppercase font-bold mb-2 opacity-70">Data Methodology</p>
-                        <p class="mb-4 text-justify">Data comes from the Committee to Protect Journalists (CPJ) and covers the period 2010–2024. Only confirmed cases of journalists killed or imprisoned due to their professional activity are included. Records were cleaned, standardized, and aggregated to ensure consistent comparisons across countries and time.</p>
-                        <p class="text-[1.3rem] uppercase font-bold mb-2 opacity-70">Visualization Methodology</p>
-                        <p class="mb-4 text-justify">The website is built using HTML, CSS, JavaScript, and D3.js. Data was preprocessed in Python and visualized through interactive charts, including linked views and time-based brushing, to support exploration of geographic patterns, temporal trends, and individual cases.</p>
+                <h2 class="font-serif text-3xl font-bold mb-8 uppercase text-stamp">Methodology & Investigation Details</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 font-mono text-base">
+                    <div class="space-y-6">
+                        <div class="mb-8">
+                            <p class="text-[1.2rem] uppercase font-bold mb-4 text-ink">01. Data Sources</p>
+                            <div class="space-y-6">
+                                <div>
+                                    <p class="font-bold text-ink mb-1">Committee to Protect Journalists (CPJ)</p>
+                                    <a href="https://cpj.org/data/" class="text-stamp underline decoration-dotted text-base break-all hover:opacity-90 transition-opacity">
+                                        https://cpj.org/data/
+                                    </a>
+                                    <p class="text-justify opacity-90 mt-2 text-base leading-relaxed">
+                                        The primary dataset providing verified evidentiary records of journalists who were killed or imprisoned in direct relation to their professional duties. This source provides the granular metrics—including country of incident, motive, and case status—used to build our core visualizations.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-ink mb-1">Freedom House – Freedom in the World</p>
+                                    <a href="https://freedomhouse.org/report/freedom-world" class="text-stamp underline decoration-dotted text-base break-all hover:opacity-90 transition-opacity">
+                                        https://freedomhouse.org/report/freedom-world
+                                    </a>
+                                    <p class="text-justify opacity-90 mt-2 text-base leading-relaxed">
+                                        Supplementary data utilized for contextual background on global press freedom and political stability. This serves as the qualitative framework for our narrative arc, helping to identify correlations between declining civil liberties and the rising "price of truth" in specific regimes.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-[1.2rem] uppercase font-bold mb-2 text-ink">02. Cleaning & Processing</p>
+                            <p class="text-justify opacity-90">
+                                The preprocessing pipeline was executed via Python (Pandas) to transform raw reports into structured visualization data:
+                                <ul class="list-disc ml-5 mt-2 space-y-2">
+                                    <li><strong>Data Synthesis:</strong> Merged 'Killed' and 'Imprisoned' CSV files, introducing a <span class="bg-ink/5 px-1">case_status</span> tag to distinguish incident types.</li>
+                                    <li><strong>Temporal Alignment:</strong> Extracted years from raw date strings and filtered the scope to a consistent 2010–2024 window.</li>
+                                    <li><strong>Schema Standardization:</strong> Renamed inconsistent headers and stripped trailing whitespaces from categorical text fields for clean D3.js binding.</li>
+                                    <li><strong>Feature Engineering:</strong> Normalized employment roles into 'Staff' and 'Freelance' categories using conditional logic.</li>
+                                    <li><strong>Aggregated Slicing:</strong> Generated specific CSV exports for D3.js, including country-year counts for maps and individual case logs for beeswarm distributions.</li>
+                                </ul>
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                         <p class="text-[1.3rem] uppercase font-bold mb-2 opacity-70">Project Team</p>
-                        <ul class="space-y-1">
-                            <li>Maryam Bagherirad — Data Analysis & Narrative Lead</li>
-                            <li>Yaugeniya Andreyeva — Frontend Developer & UI Designer</li>
-                        </ul>
+
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-[1.2rem] uppercase font-bold mb-2 text-ink">03. Visual Encodings</p>
+                            <p class="text-justify opacity-90">
+                                Data metrics are mapped to visual channels using the following logic:
+                                <ul class="list-disc ml-5 mt-2 space-y-1">
+                                    <li><strong>Color Saturation:</strong> Threat intensity in choropleth maps.</li>
+                                    <li><strong>Spatial Position:</strong> Chronological progression on the X-axis for all timelines.</li>
+                                    <li><strong>Area/Size:</strong> Magnitude of incidents in bubble charts and hierarchical importance in treemaps.</li>
+                                    <li><strong>Clustering:</strong> Density of individual incidents in beeswarm charts to represent volume.</li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <div>
+                            <p class="text-[1.2rem] uppercase font-bold mb-2 text-ink">04. Limitations & Uncertainty</p>
+                            <div class="text-justify opacity-90 space-y-2">
+                                <p><strong>Underreporting:</strong> Data includes only confirmed cases. In countries with strict censorship, actual figures may differ.</p>
+                                <p><strong>Confirmation Bias:</strong> We retained the division between “Confirmed” and “Unconfirmed” motives to reflect the degree of uncertainty in investigations.</p>
+                                <p><strong>Temporal Scope:</strong> Recent data spikes are linked to active regional conflicts, which imposes limitations on long-term forecasting.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-ink/5 p-4 border border-ink/20 transform -rotate-1">
+                            <p class="text-[1.2rem] uppercase font-bold mb-3 text-ink">Project Team</p>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between border-b border-ink/10 pb-1">
+                                    <span class="font-bold">Maryam Bagherirad</span>
+                                    <span class="text-[0.9rem] opacity-70">Data Analysis & Narrative Lead</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="font-bold">Yaugeniya Andreyeva</span>
+                                    <span class="text-[0.9rem] opacity-70">Frontend Developer & UI Designer</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Навигация по страницам -->
+        <!-- Navigation bu pages -->
         <div class="mt-6 border-t border-dashed border-ink/50 pt-8 flex justify-end">
             <a href="block1.html" class="group flex items-center gap-4 text-right hover:text-stamp transition-colors">
                 <div class="flex flex-col">
@@ -198,6 +265,7 @@
                     <ul class="space-y-2">
                         <li><a href="https://github.com/ZeyAzee/DataDoodles-PoT" class="hover:text-stamp underline decoration-dotted">GitHub Repository</a></li>
                         <li><a href="https://cpj.org/data" class="hover:text-stamp underline decoration-dotted">Original Data [CPJ]</a></li>
+                        <li><a href="https://freedomhouse.org/report/freedom-world" class="hover:text-stamp underline decoration-dotted">Freedom in the World</a></li>
                     </ul>
                 </div>
                 <div class="text-right flex flex-col justify-end">
