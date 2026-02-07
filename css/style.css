@@ -149,7 +149,6 @@ body {
     width: 4px;
 }
 
-/* Стилизация скроллбара для Beeswarm */
 .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
 }
@@ -157,16 +156,16 @@ body {
     background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #2b2b2b; /* Цвет ink */
+    background: #2b2b2b; 
     border-radius: 10px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #b71c1c; /* Цвет stamp при наведении */
+    background: #b71c1c; 
 }
-/* Фиксация высоты, чтобы скролл появился именно внутри карточки */
+
 #beeswarm-chart {
-    height: 300px; /* Отрегулируйте под вашу сетку */
-    display: block; /* Важно для корректного скролла inline-блоков */
+    height: 250px; 
+    display: block;
 }
 
 #map-instructions {
@@ -175,4 +174,17 @@ body {
 }
 #map-help-trigger:hover {
     filter: drop-shadow(0 0 2px rgba(183, 28, 28, 0.3));
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+summary::-webkit-details-marker {
+    display: none;
 }
