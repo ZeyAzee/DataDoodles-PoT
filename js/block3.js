@@ -1,3 +1,7 @@
+/**
+ * BLOCK 3: Time Slice
+ */
+
 (function() {
     const COLORS = {
         paper: "#f3f0e6",
@@ -11,14 +15,13 @@
 
     let fullData = {};
 
-    // Загрузка данных
+    // Uploading data
     Promise.all([
         d3.csv("Data/Block 3/timeline_global.csv"),
         d3.csv("Data/Block 3/bubble_country_year.csv"),
         d3.csv("Data/Block 3/status_year.csv"),
         d3.csv("Data/Block 3/beeswarm_raw.csv")
     ]).then(([timeline, bubbles, status, raw]) => {
-        // Парсим и чистим названия прямо в коде
         fullData.timeline = timeline.map(d => ({ 
             year: +d.year, 
             count: +d.killed_count 
@@ -43,15 +46,14 @@
         }));
 
         initTimeline();
-        updateDependents(2011, 2015); // Стартовый период
+        updateDependents(2011, 2015); // Start period
     });
 
-    // 1. TIMELINE (БЕЗ штампа, интерактивный)
+    // 1. TIMELINE ( interactive with brush for zooming) ---
     function initTimeline() {
         const container = d3.select("#timeline-chart");
         if (container.empty()) return;
         
-        // Увеличиваем левый отступ (left) до 50-60, чтобы поместились числа
         const margin = { top: 20, right: 30, bottom: 30, left: 60 };
         const width = container.node().clientWidth - margin.left - margin.right;
         const height = container.node().clientHeight - margin.top - margin.bottom;
@@ -71,7 +73,6 @@
             .domain([0, d3.max(fullData.timeline, d => d.count) * 1.1])
             .range([height, 0]);
 
-        // --- ДОБАВЛЯЕМ СЕТКУ (Grid Lines) для стиля ---
         svg.append("g")			
             .attr("class", "grid")
             .attr("opacity", 0.1)
@@ -81,7 +82,6 @@
                 .tickFormat("")
             );
 
-        // Линия графика
         const line = d3.line()
             .x(d => x(d.year))
             .y(d => y(d.count))
@@ -93,22 +93,20 @@
             .attr("stroke", COLORS.ink)
             .attr("stroke-width", 2)
             .attr("d", line);
-
-        // --- ОСИ ---
         
-        // Нижняя ось (Года)
+        // X-AXIS
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
             .call(d3.axisBottom(x).ticks(10).tickFormat(d3.format("d")))
             .attr("font-family", "Courier Prime")
             .attr("color", COLORS.ink);
 
-        // БОКОВАЯ ОСЬ (Количество)
+        // Y-AXIS
         svg.append("g")
-            .call(d3.axisLeft(y).ticks(5)) // Показываем ~5 делений
+            .call(d3.axisLeft(y).ticks(5))
             .attr("font-family", "Courier Prime")
             .attr("color", COLORS.ink)
-            .append("text") // Подпись оси
+            .append("text")
             .attr("fill", COLORS.ink)
             .attr("transform", "rotate(-90)")
             .attr("y", -45)
@@ -118,7 +116,7 @@
             .attr("class", "uppercase tracking-widest")
             .text("Victims");
 
-        // Инструмент выделения (Brush)
+        // Tool Brush
         const brush = d3.brushX()
             .extent([[0, 0], [width, height]])
             .on("brush end", (event) => {
@@ -134,7 +132,7 @@
         gBrush.call(brush.move, [x(2011), x(2015)]);
     }
 
-    // ОБНОВЛЕНИЕ ВСЕХ ЗАВИСИМЫХ ГРАФИКОВ
+    // UPDATING ALL DEPENDENT GRAPHS ---
     function updateDependents(start, end) {
         updateBubbles(start, end);
         updateStatusPie(start, end);
@@ -147,7 +145,7 @@
             v => d3.sum(v, d => d.count),
             d => d.country
         ).map(([country, count]) => ({ country, count }))
-        .sort((a, b) => b.count - a.count).slice(0, 15); // Увеличил лимит до 15 для наглядности зума
+        .sort((a, b) => b.count - a.count).slice(0, 15); 
 
         const container = d3.select("#bubble-chart");
         container.selectAll("svg").remove();
@@ -160,18 +158,16 @@
             .attr("height", h)
             .attr("viewBox", `0 0 ${w} ${h}`);
 
-        // Группа, которую мы будем фактически масштабировать
         const zoomGroup = svg.append("g");
 
-        // Инициализация зума
+        // TOOL ZOOM
         const zoom = d3.zoom()
-            .scaleExtent([0.5, 5]) // Ограничение: от 0.5x до 5x
+            .scaleExtent([0.5, 5])
             .on("zoom", (event) => {
                 zoomGroup.attr("transform", event.transform);
             });
 
-        // Накладываем невидимый слой для перехвата зума
-        // Это важно, чтобы зум работал везде, а не только при наведении на круги
+        // PUTTING INVISIBLE LAYER TO CATCH ZOOM EVENTS --- IGNORE ---
         svg.append("rect")
             .attr("width", w)
             .attr("height", h)
@@ -198,7 +194,7 @@
             .attr("dy", ".3em")
             .style("font-size", d => Math.min(d.r / 3, 11) + "px")
             .attr("class", "font-serif font-bold")
-            .style("pointer-events", "none") // Чтобы текст не мешал зуму
+            .style("pointer-events", "none")
             .text(d => d.data.country);
     }
 
@@ -228,15 +224,14 @@
     }
 
     function updateBeeswarm(start, end) {
-        // 1. Фильтруем данные, но НЕ обрезаем их (убираем .slice)
+        // Filtering data but NOT slicing it (removing .slice)
         const data = fullData.raw.filter(d => d.year >= start && d.year <= end);
 
         const container = d3.select("#beeswarm-chart");
         
-        // 2. Очищаем контейнер перед обновлением
+        // Clearing the container before rendering new data
         container.selectAll("div").remove();
 
-        // 3. Отрисовываем ВСЕ точки
         container.selectAll("div")
             .data(data)
             .join("div")

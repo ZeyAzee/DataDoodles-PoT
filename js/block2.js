@@ -1,3 +1,7 @@
+/**
+ * BLOCK 2: RISK PROFILE
+ */
+
 (function() {
     const config = {
         colors: {
@@ -15,6 +19,7 @@
         data: { overview: [], death: [], employment: [] }
     };
 
+    // Uploading data
     Promise.all([
         d3.csv("Data/Block 2/motive_overview.csv"),
         d3.csv("Data/Block 2/motive_type_of_death.csv"),
@@ -33,11 +38,11 @@
         renderWaffleChart();
     }
 
+    // --- 1. BAR CHART (MOTIVE STATUS) ---
     function renderBarChart() {
         const container = d3.select("#motive-bar-chart");
         container.selectAll("*").remove();
 
-        // Увеличены отступы слева (для текста) и справа (для цифр)
         const margin = { top: 10, right: 40, bottom: 20, left: 120 };
         const width = container.node().clientWidth - margin.left - margin.right;
         const height = container.node().clientHeight - margin.top - margin.bottom;
@@ -55,7 +60,7 @@
         const y = d3.scaleBand()
             .domain(state.data.overview.map(d => d.motive))
             .range([0, height])
-            .padding(0.4); // Увеличен отступ между барами
+            .padding(0.4);
 
         svg.selectAll("rect")
             .data(state.data.overview)
@@ -73,7 +78,7 @@
             });
 
         svg.append("g")
-            .call(d3.axisLeft(y).tickSize(0).tickPadding(15)) // Увеличен отступ текста от осей
+            .call(d3.axisLeft(y).tickSize(0).tickPadding(15))
             .attr("font-family", config.fonts.mono)
             .attr("font-size", "13px")
             .select(".domain").remove();
@@ -88,23 +93,20 @@
             .text(d => d.killed_count);
     }
 
+    // --- 2. TREEMAP (TYPE OF DEATH) ---
     function renderTreemap() {
         const container = d3.select("#death-treemap");
         container.selectAll("*").remove();
 
-        // Размеры с учетом внутренних отступов контейнера
         const width = container.node().clientWidth - 16;
         const height = container.node().clientHeight - 16;
 
         const filtered = state.data.death.filter(d => d.motive === state.selectedMotive);
         
-        // Считаем общую сумму для вычисления пропорций
         const totalCount = d3.sum(filtered, d => +d.count);
 
-        // Увеличиваем визуальный вес маленьких категорий, чтобы их было видно
         const displayData = filtered.map(d => ({
             ...d,
-            // Каждая категория получит минимум 6% площади, даже если там мало случаев
             displayValue: Math.max(+d.count, totalCount * 0.06) 
         }));
 
@@ -127,7 +129,6 @@
             .enter().append("g")
             .attr("transform", d => `translate(${d.x0},${d.y0})`);
 
-        // Отрисовка прямоугольников
         cells.append("rect")
             .attr("width", d => d.x1 - d.x0)
             .attr("height", d => d.y1 - d.y0)
@@ -135,9 +136,8 @@
             .attr("stroke", config.colors.paper)
             .attr("opacity", (d, i) => 1 - (i * 0.15))
             .append("title") 
-            .text(d => `${d.data.type_of_death}: ${d.data.count} cases`); // Данные остаются в тултипе
+            .text(d => `${d.data.type_of_death}: ${d.data.count} cases`);
 
-        // Отрисовка текста (только название, без скобок)
         cells.append("text")
             .attr("x", 8)
             .attr("y", 22)
@@ -146,12 +146,10 @@
             .attr("font-family", config.fonts.mono)
             .style("text-transform", "uppercase")
             .text(d => {
-                // Показываем текст, только если прямоугольник достаточно широкий
                 const label = d.data.type_of_death;
                 return (d.x1 - d.x0 > 45) ? label : "";
             })
             .each(function(d) {
-                // Если текст слишком длинный для блока, пробуем перенести его (опционально)
                 const el = d3.select(this);
                 if (d.x1 - d.x0 < 100 && el.text().includes(" ")) {
                     const words = el.text().split(" ");
@@ -162,6 +160,7 @@
             });
     }
 
+    // --- 3. WAFFLE CHART (EMPLOYMENT VULNERABILITY) ---
     function renderWaffleChart() {
         const container = d3.select("#employment-waffle");
         const legend = d3.select("#waffle-legend");
@@ -178,10 +177,9 @@
         });
         while(waffleData.length < 100) waffleData.push({ type: filtered[0].employment_type });
 
-        // Рассчитываем размер сетки с учетом оступов
         const availableHeight = container.node().clientHeight - 20;
         const size = Math.min(260, availableHeight);
-        const cellSize = (size / 10) - 3; // Увеличен зазор между квадратами
+        const cellSize = (size / 10) - 3;
 
         const svg = container.append("svg")
             .attr("width", size)
