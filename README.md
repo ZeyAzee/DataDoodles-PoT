@@ -45,26 +45,24 @@ Cleaned datasets are loaded as CSV files and visualized through interactive char
 
 Folder Structure
 
-<pre>
 data/
-  raw/        Original downloaded datasets
-  clean/      Cleaned master dataset
-  block1/     Geography of Danger datasets
-  block2/     Patterns of Violence datasets
-  block3/     Time Slice datasets
-</pre>
-
+- raw/        Original downloaded datasets
+- clean/      Cleaned master dataset
+- block1/     Geography of Danger datasets
+- block2/     Patterns of Violence datasets
+- block3/     Time Slice datasets
 
 notebooks/
- 01_data_cleaning.ipynb
- 02_block1_geography_of_danger.ipynb
- 03_block2_risk_profile.ipynb
- 04_block3_time_slice.ipynb
+- 01_data_cleaning.ipynb
+- 02_block1_geography_of_danger.ipynb
+- 03_block2_risk_profile.ipynb
+- 04_block3_time_slice.ipynb
 
 site/
- index.html
- css/
- js/
+- index.html
+- css/
+- js/
+
 
 
 
