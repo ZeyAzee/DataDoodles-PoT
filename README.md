@@ -8,7 +8,7 @@
 ---
 
 ## Live Website
-🔗 https://zeyazee.github.io/DataDoodles
+🔗 https://zeyazee.github.io/DataDoodles-PoT/
 
 ---
 
