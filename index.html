@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataDoodles: The price of truth</title>
+    
+    <!-- Connecting fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/script.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+</head>
+<body class="bg-paper min-h-screen relative overflow-x-hidden selection:bg-redaction selection:text-paper">
+
+    <div class="paper-texture"></div>
+
+    <!-- HEADER -->
+    <header class="border-b-2 border-ink sticky top-0 z-40 bg-paper/95 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a class="flex items-center gap-3 cursor-pointer" href="index.html">
+                <div class="border-2 border-ink w-10 h-10 flex items-center justify-center bg-ink text-paper font-serif font-bold text-lg">
+                    #
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-lg leading-none tracking-tight uppercase">Case № 2026</span>
+                    <span class="text-[0.8rem] uppercase tracking-widest text-stamp">Top Secret</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex gap-2">
+                <a href="index.html" id="nav-home" class="nav-tab active">00. overview</a>
+                <a href="block1.html" id="nav-block1" class="nav-tab">01. location</a>
+                <a href="block2.html" id="nav-block2" class="nav-tab">02. motives</a>
+                <a href="block3.html" id="nav-block3" class="nav-tab">03. chronicle</a>
+            </nav>
+
+            <button class="md:hidden text-ink">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="flex-grow container mx-auto px-4 py-12 relative z-10 max-w-6xl">
+
+        <!-- === PAGE: HOME === -->
+        <section id="page-home" class="fade-in">
+            <!-- Hero -->
+            <div class="border-l-4 border-ink pl-6 md:pl-12 py-4 mb-16 relative">
+                <h1 class="font-serif text-5xl md:text-7xl font-bold text-ink mb-6 uppercase leading-[0.9]">
+                    The price of <br><span class="text-stamp italic">Truth</span>
+                </h1>
+                
+                <div class="font-mono text-lg md:text-xl text-ink-light max-w-2xl leading-relaxed mb-2">
+                    Report on threats to freedom of speech. <br>
+                    Analysis of journalists who were <span class="redacted" title="Hover to reveal">killed</span> or 
+                    <span class="redacted">imprisoned</span> 
+                    while performing their professional duties.
+                </div>
+            </div>
+
+            <!-- Intro Narrative / Mission Statement -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+                <div class="report-text">
+                    <h3 class="font-serif font-bold text-2xl mb-4 border-b border-ink inline-block">Introduction</h3>
+                    <p>
+                        Journalism is not just a profession, it is the foundation of a free society. However, CPJ data shows a worrying trend: eliminating journalists has stopped being a "side effect" of military conflicts. 
+                    </p>
+                    <p>
+                        Today it is <span class="bg-yellow-100 px-1 font-bold">a censorship tool</span>. Mercenaries, criminal cartels and government structures use violence to silence voices investigating corruption and crimes.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center items-start border border-dashed border-ink p-6 bg-white/50 transform rotate-1">
+                    <span class="text-lg uppercase tracking-widest text-stamp mb-3">Project aim:</span>
+                    <p class="tracking-wide text-[0.92rem] italic leading-relaxed">
+                        To explore the <span class="underline decoration-stamp decoration-double">"anatomy of silence"</span> through analysis of CPJ data on journalists killed/imprisoned. The aim is to identify patterns between reporting topics, violence and impunity in order to determine the real price of truth in different regions of the world.
+                    </p>
+                    <div class="mt-6 flex gap-4">
+                        <a href="block1.html" class="border-2 border-stamp text-stamp hover:bg-stamp hover:text-white px-6 py-2 font-bold uppercase tracking-widest transition-colors text-sm shadow-[3px_3px_0px_0px_rgba(183,28,28,0.3)] hover:shadow-none translate-y-0 hover:translate-y-1">
+                            Begin
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confidential-divider">
+                <span>/// CASE INVENTORY ///</span>
+            </div>
+
+            <!-- Narrative Intro Cards (Links to Sections) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Card 1 -->
+                <a href="block1.html" class="block group">
+                    <div class="evidence-card p-6 cursor-pointer hover:border-stamp transition-colors">
+                        <div class="flex justify-between items-start mb-4 border-b border-dashed border-gray-400 pb-2">
+                            <!-- Renamed Title to avoid confusion -->
+                            <h3 class="font-serif font-bold text-lg group-hover:text-stamp transition-colors">Folder 01: GEO INTEL</h3>
+                            <span class="text-xs font-mono bg-ink text-white px-1">LINK</span>
+                        </div>
+                        <p class="text-sm leading-relaxed">
+                            This section maps where journalists face the highest risk. By exploring countries across the globe, we uncover how violence and repression against reporters are unevenly distributed and concentrated in specific regions.
+                        </p>
+                        <div class="mt-4 text-sm font-bold text-stamp text-right">OPEN CASE >></div>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="block2.html" class="block group">
+                    <div class="evidence-card p-6 transform md:rotate-1 cursor-pointer hover:border-stamp transition-colors">
+                        <div class="flex justify-between items-start mb-4 border-b border-dashed border-gray-400 pb-2">
+                            <h3 class="font-serif font-bold text-lg group-hover:text-stamp transition-colors">Folder 02: THREAT LEVEL</h3>
+                            <span class="text-xs font-mono bg-ink text-white px-1">LINK</span>
+                        </div>
+                        <p class="text-sm leading-relaxed">
+                            Here we examine the motives behind attacks on journalists. From political pressure to exposure of corruption, this block reveals the patterns that turn reporting into a life-threatening act.
+                        </p>
+                        <div class="mt-4 text-sm font-bold text-stamp text-right">OPEN CASE >></div>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="block3.html" class="block group">
+                    <div class="evidence-card p-6 transform md:-rotate-1 cursor-pointer hover:border-stamp transition-colors">
+                        <div class="flex justify-between items-start mb-4 border-b border-dashed border-gray-400 pb-2">
+                            <h3 class="font-serif font-bold text-lg group-hover:text-stamp transition-colors">Folder 03: INCIDENT LOGS</h3>
+                            <span class="text-xs font-mono bg-ink text-white px-1">LINK</span>
+                        </div>
+                        <p class="text-sm leading-relaxed">
+                            Each data point represents a real person. This section brings attention to individual cases over time, showing how moments of conflict translate into human loss and silenced voices.
+                        </p>
+                        <div class="mt-4 text-sm font-bold text-stamp text-right">OPEN CASE >></div>
+                    </div>
+                </a>
+            </div>
+
+            <div id="methodology" class="border-t border-dashed border-ink/50 pt-8 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 font-mono text-base">
+                    <div>
+                        <p class="text-[1.3rem] uppercase font-bold mb-2 opacity-70">Data Methodology</p>
+                        <p class="mb-4 text-justify">Data comes from the Committee to Protect Journalists (CPJ) and covers the period 2010–2024. Only confirmed cases of journalists killed or imprisoned due to their professional activity are included. Records were cleaned, standardized, and aggregated to ensure consistent comparisons across countries and time.</p>
+                        <p class="text-[1.3rem] uppercase font-bold mb-2 opacity-70">Visualization Methodology</p>
+                        <p class="mb-4 text-justify">The website is built using HTML, CSS, JavaScript, and D3.js. Data was preprocessed in Python and visualized through interactive charts, including linked views and time-based brushing, to support exploration of geographic patterns, temporal trends, and individual cases.</p>
+                    </div>
+                    <div>
+                         <p class="text-[1.3rem] uppercase font-bold mb-2 opacity-70">Project Team</p>
+                        <ul class="space-y-1">
+                            <li>Maryam Bagherirad — Data Analysis & Narrative Lead</li>
+                            <li>Yaugeniya Andreyeva — Frontend Developer & UI Designer</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Навигация по страницам -->
+        <div class="mt-6 border-t border-dashed border-ink/50 pt-8 flex justify-end">
+            <a href="block1.html" class="group flex items-center gap-4 text-right hover:text-stamp transition-colors">
+                <div class="flex flex-col">
+                    <span class="text-[0.75rem] font-mono uppercase tracking-widest opacity-60">Next Step</span>
+                    <span class="font-serif font-bold text-xl uppercase">Block 01: GEO INTEL</span>
+                </div>
+                <div class="border-2 border-current p-2 rounded-full group-hover:bg-stamp group-hover:text-white transition-all">
+                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-ink text-paper py-8 border-t-4 border-stamp relative z-20">
+        <div class="container mx-auto px-4 font-mono text-xs">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-[0.9rem] font-bold uppercase mb-4 text-gray-400">/// Case Closed ///</h4>
+                    <p class="max-w-xs opacity-70">
+                        This project is educational. Any similarities to real investigations are not coincidental. The data is public.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-[0.9rem] font-bold uppercase mb-4 text-gray-400">Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://github.com/ZeyAzee/DataDoodles-PoT" class="hover:text-stamp underline decoration-dotted">GitHub Repository</a></li>
+                        <li><a href="https://cpj.org/data" class="hover:text-stamp underline decoration-dotted">Original Data [CPJ]</a></li>
+                    </ul>
+                </div>
+                <div class="text-right flex flex-col justify-end">
+                    <div class="stamp-box border-white text-white rotate-0 inline-block mb-2 w-fit ml-auto">VERIFIED</div>
+                    <p class="opacity-50">&copy; 2026 Investigative Group</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

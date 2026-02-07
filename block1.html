@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataDoodles: The price of truth</title>
+    
+    <!-- Connecting fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="js/script.js"></script>
+    <script src="js/block1.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+</head>
+<body class="bg-paper min-h-screen relative overflow-x-hidden selection:bg-redaction selection:text-paper">
+
+    <div class="paper-texture"></div>
+
+       <!-- HEADER -->
+    <header class="border-b-2 border-ink sticky top-0 z-40 bg-paper/95 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a class="flex items-center gap-3 cursor-pointer" href="index.html">
+                <div class="border-2 border-ink w-10 h-10 flex items-center justify-center bg-ink text-paper font-serif font-bold text-lg">
+                    #
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif font-bold text-lg leading-none tracking-tight uppercase">Case № 2026</span>
+                    <span class="text-[0.8rem] uppercase tracking-widest text-stamp">Top Secret</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex gap-2">
+                <a href="index.html" id="nav-home" class="nav-tab">00. overview</a>
+                <a href="block1.html" id="nav-block1" class="nav-tab active">01. location</a>
+                <a href="block2.html" id="nav-block2" class="nav-tab">02. motives</a>
+                <a href="block3.html" id="nav-block3" class="nav-tab">03. chronicle</a>
+            </nav>
+
+            <button class="md:hidden text-ink">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="flex-grow container mx-auto px-4 py-12 relative z-10 max-w-6xl">
+
+        <!-- === PAGE: BLOCK 1 (GEOGRAPHY) === -->
+        <section id="page-block1" class="fade-in">
+            <div class="mb-8 border-b-2 border-ink pb-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div>
+                    <span class="font-mono text-base text-stamp uppercase tracking-widest">Block 01</span>
+                    <h2 class="font-serif text-4xl font-bold text-ink uppercase">Geography of Danger</h2>
+                </div>
+                <div class="hidden md:block stamp-box text-sm rotate-0">THREAT MAP</div>
+            </div>
+
+            <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 report-text border-l-2 border-ink pl-4">
+                    <h3 class="font-serif font-bold text-xl mb-2 text-stamp">Operational Summary:</h3>
+                    <p>
+                        Telling the truth does not carry the same cost everywhere. In some parts of the world, journalism is far more dangerous than in others. This block maps where reporters face the greatest threats, revealing countries where violence, silence, and impunity shape the everyday reality of those who try to inform the public.
+                    </p>
+                </div>
+                <div class="bg-paper-dark p-4 font-mono text-base border border-ink flex flex-col justify-center">
+                    <span class="uppercase font-bold mb-2 border-b border-ink/50 pb-1">Key Data:</span>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between">
+                            <span>Total Victims:</span> 
+                            <span id="key-total-victims" class="font-bold">1407+</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Most Dangerous Country:</span> 
+                            <span id="key-dangerous-zone" class="font-bold">Syria</span>
+                        </li>
+                        <li class="flex justify-between text-stamp">
+                            <span>Global Impunity Rate:</span> 
+                            <span id="key-impunity-rate" class="font-bold">31%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[600px]">
+                <div class="lg:col-span-8 h-[400px] lg:h-full">
+                    <div class="evidence-card h-full p-2 flex flex-col cursor-pointer hover:border-stamp transition-colors">
+                        <div class="border-b border-ink mb-2 pb-1 flex justify-between items-center">
+                            <span class="font-bold font-serif uppercase">Fig. 1.1: World Map</span>
+                            <span class="text-[0.8rem] font-mono">[INTERACTIVE]</span>
+                        </div>
+                        <div id="map-viz" class="flex-grow bg-blue-50/5 border border-dashed border-ink/20 relative overflow-hidden">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 flex flex-col gap-6 h-full">
+                    <div class="evidence-card flex-1 p-4 cursor-pointer hover:border-stamp transition-colors">
+                        <div class="flex justify-between mb-2">
+                            <h2 class="font-serif font-bold">Timeline: <span class="country-name text-stamp">Mexico</span></h2>
+                        </div>
+                        <div id="timeline-viz" class="h-40 relative chart-placeholder bg-white/30">
+                        </div>
+                        <p class="text-xs font-mono mt-6 text-gray-500 text-justify">
+                            Shows the dynamics/trends of murders only in chosen regions.
+                        </p>
+                    </div>
+
+                    <div class="evidence-card flex-1 p-4 cursor-pointer hover:border-stamp transition-colors">
+                        <div class="flex justify-between mb-2">
+                            <h3 class="font-serif font-bold">Impunity: <span class="country-name text-stamp">Mexico</span></h3>
+                        </div>
+                        <div id="impunity-viz" class="flex items-center justify-center h-56 chart-placeholder">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sheets navigation -->
+        <div class="mt-20 border-t border-dashed border-ink/50 pt-8 flex justify-between items-center">
+            <!-- Back -->
+            <!-- Back -->
+            <a href="index.html" class="group flex items-center gap-4 text-left hover:text-ink/70 transition-colors">
+                <div class="border-2 border-current p-2 rounded-full group-hover:bg-ink group-hover:text-white transition-all">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[0.75rem] font-mono uppercase tracking-widest opacity-60">Back</span>
+                    <span class="font-serif font-bold text-lg uppercase">Overview</span>
+                </div>
+            </a>
+
+            <!-- Forward -->
+            <a href="block2.html" class="group flex items-center gap-4 text-right hover:text-stamp transition-colors">
+                <div class="flex flex-col">
+                    <span class="text-[0.75rem] font-mono uppercase tracking-widest opacity-60">Next Step</span>
+                    <span class="font-serif font-bold text-xl uppercase">BLOCK 02: THREAT LEVEL</span>
+                </div>
+                <div class="border-2 border-current p-2 rounded-full group-hover:bg-stamp group-hover:text-white transition-all">
+                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                </div>
+            </a>
+        </div>
+    </main> 
+    
+    <!-- FOOTER -->
+    <footer class="bg-ink text-paper py-8 border-t-4 border-stamp relative z-20">
+        <div class="container mx-auto px-4 font-mono text-xs">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-[0.9rem] font-bold uppercase mb-4 text-gray-400">/// Case Closed ///</h4>
+                    <p class="max-w-xs opacity-70">
+                        This project is educational. Any similarities to real investigations are not coincidental. The data is public.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-[0.9rem] font-bold uppercase mb-4 text-gray-400">Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://github.com/ZeyAzee/DataDoodles-PoT" class="hover:text-stamp underline decoration-dotted">GitHub Repository</a></li>
+                        <li><a href="https://cpj.org/data" class="hover:text-stamp underline decoration-dotted">Original Data [CPJ]</a></li>
+                    </ul>
+                </div>
+                <div class="text-right flex flex-col justify-end">
+                    <div class="stamp-box border-white text-white rotate-0 inline-block mb-2 w-fit ml-auto">VERIFIED</div>
+                    <p class="opacity-50">&copy; 2026 Investigative Group</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
