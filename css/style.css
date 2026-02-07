@@ -168,3 +168,11 @@ body {
     height: 300px; /* Отрегулируйте под вашу сетку */
     display: block; /* Важно для корректного скролла inline-блоков */
 }
+
+#map-instructions {
+    box-shadow: 5px 5px 0px rgba(43, 43, 43, 1);
+    transform: rotate(-0.5deg);
+}
+#map-help-trigger:hover {
+    filter: drop-shadow(0 0 2px rgba(183, 28, 28, 0.3));
+}

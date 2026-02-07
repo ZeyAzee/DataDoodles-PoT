@@ -11,7 +11,7 @@ const COLORS = {
 
 let fullMapData, fullTimelineData, fullImpunityData;
 
-// Маппинг для синхронизации карты (TopoJSON) и баз данных (CSV)
+// mapping for synchronizing map (TopoJSON) and databases (CSV)
 const countryNameMap = {
     "United States of America": "USA",
     "Russian Federation": "Russia",
@@ -19,18 +19,17 @@ const countryNameMap = {
     "Syrian Arab Republic": "Syria"
 };
 
-// Функция для получения "технического" имени из CSV
+// get CSV name from GeoJSON name
 function getCsvName(geoName) {
     return countryNameMap[geoName] || geoName;
 }
 
-// Функция для получения "красивого" имени для сайта
 function getDisplayName(name) {
     if (name === "Israel and the Occupied Palestinian Territory") return "Israel";
     return name;
 }
 
-// Загрузка данных
+// Uploading data
 Promise.all([
     d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"),
     d3.csv("Data/Block 1/map_country_total.csv"),
@@ -43,33 +42,30 @@ Promise.all([
 
     const countries = topojson.feature(world, world.objects.countries);
     
-    calculateKeyData(); // Считаем данные для правого блока
-    drawMap(countries); // Рисуем карту
-    updateCharts("Mexico"); // Стартовая страна
+    calculateKeyData();
+    drawMap(countries); 
+    updateCharts("Mexico");
 });
 
-// --- 1. KEY DATA (АВТОМАТИЧЕСКИЙ РАСЧЕТ) ---
+// --- 1. KEY DATA (AUTOMATIC CALCULATING) ---
 function calculateKeyData() {
     const totalVictims = d3.sum(fullMapData, d => +d.killed_count);
     
-    // Находим самую опасную запись
     const topEntry = fullMapData.reduce((prev, curr) => (+prev.killed_count > +curr.killed_count) ? prev : curr);
     
-    // Расчет общей безнаказанности
     const totalConfirmed = d3.sum(fullImpunityData.filter(d => d.case_type === 'confirmed'), d => +d.count);
     const totalUnconfirmed = d3.sum(fullImpunityData.filter(d => d.case_type === 'unconfirmed'), d => +d.count);
     const globalRate = Math.round((totalUnconfirmed / (totalConfirmed + totalUnconfirmed)) * 100);
 
-    // Вывод в HTML с заменой имени
     d3.select("#key-total-victims").text(totalVictims.toLocaleString() + "+");
     d3.select("#key-dangerous-zone").text(getDisplayName(topEntry.country));
     d3.select("#key-impunity-rate").text(globalRate + "%");
 }
 
-// --- 2. ОБНОВЛЕНИЕ ГРАФИКОВ ---
+// --- 2. UPDATING VISUALISATIONS ---
 function updateCharts(countryName) {
-    const csvName = countryName; // Имя для поиска в базе
-    const displayName = getDisplayName(countryName); // Имя для заголовка (Israel)
+    const csvName = countryName;
+    const displayName = getDisplayName(countryName);
 
     const hasData = fullMapData.some(d => d.country === csvName);
 
@@ -85,7 +81,7 @@ function updateCharts(countryName) {
     }
 }
 
-// Заглушка для пустых стран
+// --- 5. NO DATA PLACEHOLDER ---
 function showNoDataPlaceholder(selector) {
     const container = d3.select(selector);
     container.selectAll("*").remove();
@@ -153,14 +149,13 @@ function renderImpunity(countryName) {
     chartGroup.selectAll("path").data(pie(pieData)).join("path").attr("d", arc).attr("fill", d => d.data.color).attr("stroke", COLORS.paper).style("stroke-width", "2px");
     chartGroup.append("text").attr("text-anchor", "middle").attr("dy", ".35em").attr("class", "font-serif font-bold text-3xl").text(`${rate}%`);
 
-    // Легенда в столбик
     const legend = svg.append("g").attr("transform", `translate(${width / 2 - 55}, ${radius * 2 + margin.top + 15})`);
     const legendItems = legend.selectAll(".legend-item").data(pieData).enter().append("g").attr("transform", (d, i) => `translate(0, ${i * 18})`);
     legendItems.append("rect").attr("width", 10).attr("height", 10).attr("fill", d => d.color);
     legendItems.append("text").attr("x", 20).attr("y", 10).attr("class", "font-mono text-[15px] uppercase").text(d => `${d.label}: ${d.val}`);
 }
 
-// --- 5. БЕСКОНЕЧНАЯ КАРТА ---
+// --- 5. ENDLESS MAP ---
 function drawMap(geoData) {
     const container = d3.select("#map-viz");
     const width = container.node().clientWidth;
@@ -199,3 +194,32 @@ function drawMap(geoData) {
     });
     svg.call(zoom);
 }
+// LOGIC FOR MAP HELP TOOLTIP
+document.addEventListener('DOMContentLoaded', () => {
+    const helpTrigger = document.getElementById('map-help-trigger');
+    const instructions = document.getElementById('map-instructions');
+
+    if (helpTrigger && instructions) {
+        
+        helpTrigger.addEventListener('mouseenter', () => {
+            instructions.classList.remove('hidden');
+        });
+
+        helpTrigger.addEventListener('mouseleave', () => {
+            instructions.classList.add('hidden');
+        });
+
+        helpTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            instructions.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', () => {
+            instructions.classList.add('hidden');
+        });
+        
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+});
