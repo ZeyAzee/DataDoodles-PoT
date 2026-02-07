@@ -14,6 +14,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="js/script.js"></script>
+    <script src="js/block2.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -73,72 +74,31 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <div class="lg:col-span-12 h-[300px]">
-                    <div class="evidence-card h-full p-4 cursor-pointer hover:border-stamp transition-colors">
-                        <h3 class="font-serif font-bold uppercase mb-4 border-b border-dashed border-gray-400"> Beats Covered</h3>
-                        
-                        <div class="flex flex-col gap-3 h-full justify-center chart-placeholder px-8">
-                            <div class="flex items-center gap-2 cursor-pointer group">
-                                <span class="w-24 text-xs font-mono text-right">POLITICS</span>
-                                <div class="flex-grow h-4 bg-ink/10 group-hover:bg-ink transition-all relative">
-                                    <div class="h-full bg-ink w-[80%]"></div>
-                                </div>
-                                <span class="text-xs font-bold font-serif">Top Risk</span>
-                            </div>
-                            <div class="flex items-center gap-2 cursor-pointer group">
-                                <span class="w-24 text-xs font-mono text-right text-stamp font-bold">WAR</span>
-                                <div class="w-3/4 h-4 bg-stamp/20 group-hover:bg-stamp transition-all relative">
-                                     <div class="h-full bg-stamp w-[95%]"></div>
-                                </div>
-                                <span class="text-xs font-bold font-serif text-stamp">High Risk</span>
-                            </div>
-                            <div class="flex items-center gap-2 cursor-pointer group">
-                                <span class="w-24 text-xs font-mono text-right">CORRUPTION</span>
-                                <div class="w-1/2 h-4 bg-ink/10 group-hover:bg-ink transition-all relative">
-                                     <div class="h-full bg-ink w-[60%]"></div>
-                                </div>
-                                <span class="text-xs font-bold font-serif">Targeted</span>
-                            </div>
-                        </div>
+                <div class="lg:col-span-12 min-h-[300px]">
+                    <div class="evidence-card h-full p-6 hover:border-stamp transition-colors relative">
+                        <h3 class="font-serif font-bold uppercase mb-6 border-b border-dashed border-gray-400">Step 1: Select Motive Status</h3>
+                        <div id="motive-bar-chart" class="h-[180px] w-full"></div>
+                        <p class="text-xs font-mono mt-4 text-center opacity-60 italic">Click a bar to filter forensic data</p>
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 h-[350px]">
-                    <div class="evidence-card h-full p-4 bg-paper-dark cursor-pointer hover:border-stamp transition-colors">
-                        <div class="flex justify-between items-center mb-4">
-                             <h3 class="font-serif font-bold uppercase">Suspect Source</h3>
-                             <span class="stamp-box text-[0.6rem] border-2 rotate-0">SUSPECT</span>
+                <div class="lg:col-span-6 min-h-[450px]">
+                    <div class="evidence-card h-full p-6 bg-paper-dark hover:border-stamp transition-colors relative">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-serif font-bold uppercase">Mechanism of Death</h3>
+                            <span id="selected-motive-label" class="stamp-box text-[0.6rem] border-2 rotate-0 px-2">CONFIRMED</span>
                         </div>
-                       
-                        <div class="h-56 border border-ink chart-placeholder bg-paper p-2 grid grid-cols-2 gap-1 relative">
-                            <div class="bg-ink text-paper flex flex-col items-center justify-center text-center p-2 text-xs relative group cursor-help">
-                                <span>POLITICAL GROUPS</span>
-                                <span class="hidden group-hover:block absolute bottom-1 text-[0.6rem] bg-paper text-ink px-1">32%</span>
-                            </div>
-                            <div class="bg-ink/70 text-white flex items-center justify-center text-center p-2 text-xs">GOV OFFICIALS</div>
-                            <div class="bg-ink/40 col-span-2 flex items-center justify-center text-center p-2 text-xs">MILITARY PERSONNEL</div>
-                        </div>
-                         <p class="text-xs font-mono mt-2 text-center">Who orders the killings?</p>
+                        <div id="death-treemap" class="h-[300px] w-full border border-ink bg-paper p-2 chart-placeholder shadow-inner"></div>
+                        <p class="text-xs font-mono mt-4 text-center">Classified by cause of incident</p>
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 h-[350px]">
-                    <div class="evidence-card h-full p-4 cursor-pointer hover:border-stamp transition-colors">
-                        <h3 class="font-serif font-bold uppercase mb-4">Status: Staff vs Freelance</h3>
-                        <div class="h-56 chart-placeholder grid grid-cols-10 gap-1 content-center px-8 opacity-80">
-                             <script>
-                                 for(let i=0; i<40; i++) {
-                                     document.write(`<div class="w-full aspect-square bg-ink rounded-sm"></div>`);
-                                 }
-                                 for(let i=0; i<10; i++) {
-                                     document.write(`<div class="w-full aspect-square border border-ink bg-transparent rounded-sm"></div>`);
-                                 }
-                             </script>
-                        </div>
-                        <div class="flex justify-center gap-6 text-xs font-mono mt-2">
-                             <span class="flex items-center"><span class="w-3 h-3 bg-ink mr-2"></span> STAFF (Protected)</span>
-                             <span class="flex items-center"><span class="w-3 h-3 border border-ink mr-2"></span> FREELANCE (Vulnerable)</span>
-                        </div>
+                <div class="lg:col-span-6 min-h-[450px]">
+                    <div class="evidence-card h-full p-6 hover:border-stamp transition-colors relative flex flex-col">
+                        <h3 class="font-serif font-bold uppercase mb-6">Employment vulnerability</h3>
+                        <div id="employment-waffle" class="flex-grow chart-placeholder flex items-center justify-center py-4"></div>
+                        <div id="waffle-legend" class="flex flex-wrap justify-center gap-4 text-xs font-mono mt-6 pt-4 border-t border-ink/10">
+                            </div>
                     </div>
                 </div>
             </div>
