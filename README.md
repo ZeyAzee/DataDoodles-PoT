@@ -60,6 +60,9 @@ notebooks/
 
 site/
 - index.html
+- block1.html
+- block2.html
+- block3.html
 - css/
 - js/
 
