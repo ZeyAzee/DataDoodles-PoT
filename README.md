@@ -38,8 +38,57 @@ Data preprocessing was performed in **Python using Pandas**, executed in **Googl
 ---
 
 ## Visualization Methodology
-The website is built using **HTML, CSS, JavaScript, and D3.js**.  
-Cleaned datasets are loaded as CSV files and visualized through interactive charts. Techniques such as linked views, filtering, and time-based brushing are used to help users explore geographic patterns, temporal trends, and individual cases of violence against journalists.
+
+The project is implemented as a multi-page interactive dashboard built with **HTML5, Tailwind CSS, and D3.js (v7)**. The visualization strategy focuses on translating complex datasets into a cohesive narrative through several layers of interaction:
+* **Visual Encodings:**
+* **Linked Interactions:**
+* **Individual-Level Granularity:**
+* **Performance Optimization:** 
+
+---
+
+## How to Reproduce the Project
+
+### 1. Data Preprocessing (Python)
+
+To recreate the data cleansing and transformation process, follow these steps:
+
+* Install the necessary libraries: `pip install pandas numpy`.
+* Run the Jupyter notebooks in the `/Notebooks` folder in strict numerical order:
+1. `01_merge_and_filter_cpj.ipynb`: merges the `Killed.csv` and `Imprisoned.csv` files into a single master file.
+2. `02_block1_geography_of_danger.ipynb`: prepares aggregated data for maps and geographic charts.
+3. `03_block2_risk_profile_case_characteristics.ipynb`: processes data on motives and types of death and normalizes the roles of journalists.
+4. `04_block3_time_slice.ipynb`: generates the final CSV files for timelines and the victim registry.
+
+
+* The results of the scripts are automatically saved in the corresponding subfolders of the `/Data` directory, which are used by D3.js visualizations.
+
+### 2. Serving the Website Locally
+
+Since the project uses **D3.js** to load data via the Fetch API, opening the `index.html` file directly in the browser will result in a CORS error. The site must be run via a local server:
+
+* **VS Code:** Install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension, open the project folder, and click “Go Live.”
+* **Python:** run the command `python -m http.server 8000` in the project's root directory and go to `http://localhost:8000`.
+* **Node.js:** use the `serve` package with the command `npx serve .`.
+
+---
+
+## Technology Stack
+
+### **Frontend & Visualization**
+
+* **HTML5 / CSS3 / JavaScript (ES6+):** Basic structure and logic of the web interface.
+* **D3.js (v7):** Library for creating dynamic interactive visualizations (maps, graphs, linked views).
+* **Tailwind CSS:** Framework for layout and styling in the style of “Top Secret” documentation.
+* **Lucide-icons:** A set of vector icons for navigation and UI elements.
+* **TopoJSON:** Extension for working with geographic data and rendering a world map.
+
+### **Data Processing & Analysis (Preprocessing)**
+
+* **Python 3.x:** The main language for cleaning, filtering, and preparing data.
+* **Pandas:** A key library for manipulating tabular data, combining datasets, and aggregating metrics.
+* **NumPy:** Used for mathematical operations and processing data arrays.
+
 
 ---
 
@@ -72,27 +121,12 @@ Folder Structure
 └── README.md            # Project documentation
 ```
 
-
----
-
-## How to Reproduce the Project
-1. Run the notebooks in the `/notebooks` folder in numerical order using Google Colab or Jupyter.  
-2. Each notebook outputs cleaned CSV files into the corresponding `/data/blockX` folder.  
-3. The website loads these CSV files directly for visualization using D3.js.
-
----
-
-## Technologies Used
-- HTML, CSS, JavaScript  
-- D3.js  
-- Python (Pandas)  
-- Google Colab (execution environment)
-
 ---
 
 ## Limitations
-Violence against journalists is often underreported, especially in conflict zones. Data availability and reporting practices vary across countries and years, which may affect comparability. The project reflects documented cases and does not capture unreported incidents.
-
+- Underreporting: Data includes only confirmed cases. In countries with strict censorship, actual figures may differ.
+- Confirmation Bias: We have retained the division between “Confirmed” and “Unconfirmed” motives in order to communicate honestly the degree of uncertainty in investigations.
+- Conflict Zones: Data spikes (e.g., 2023–2024) are closely linked to active phases of regional conflicts, which imposes limitations on long-term forecasting.
 ---
 
 ## License
