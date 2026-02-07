@@ -50,7 +50,7 @@ Folder Structure
 ├── clean/          # Cleaned master dataset
 ├── block1/         # Geography of Danger datasets
 ├── block2/         # Patterns of Violence datasets
-├── block3/         # Time Slice datasets
+└── block3/         # Time Slice datasets
 
 /notebooks
 ├── 01_data_cleaning.ipynb
@@ -62,6 +62,7 @@ Folder Structure
 ├── index.html
 ├── css/
 └── js/
+
 
 ---
 
