@@ -45,27 +45,30 @@ Cleaned datasets are loaded as CSV files and visualized through interactive char
 
 Folder Structure
 
-data/
-- raw/        Original downloaded datasets
-- clean/      Cleaned master dataset
-- block1/     Geography of Danger datasets
-- block2/     Patterns of Violence datasets
-- block3/     Time Slice datasets
-
-notebooks/
-- 01_data_cleaning.ipynb
-- 02_block1_geography_of_danger.ipynb
-- 03_block2_risk_profile.ipynb
-- 04_block3_time_slice.ipynb
-
-site/
-- index.html
-- block1.html
-- block2.html
-- block3.html
-- css/
-- js/
-
+.
+├── Data/
+│   ├── Raw/             # Original downloaded datasets
+│   ├── Clean/           # Cleaned master dataset
+│   ├── Block 1/         # Geography of Danger datasets
+│   ├── Block 2/         # Risk Profile datasets
+│   └── Block 3/         # Time Slice datasets
+├── Notebooks/           # Data processing and analysis
+│   ├── 01_merge_and_filter_cpj.ipynb
+│   ├── 02_block1_geography_of_danger.ipynb
+│   ├── 03_block2_risk_profile_case_characteristics.ipynb
+│   └── 04_block3_time_slice.ipynb
+├── css/
+│   └── style.css        # Project styling
+├── js/
+│   ├── block1.js        # Logic for Geography of Danger visualizations
+│   ├── block2.js        # Logic for Risk Profile visualizations
+│   ├── block3.js        # Logic for Time Slice visualizations
+│   └── script.js        # Shared JavaScript functions
+├── index.html           # Main dashboard entry point
+├── block1.html          # Geography of Danger page
+├── block2.html          # Risk Profile page
+├── block3.html          # Time Slice page
+└── README.md            # Project documentation
 
 
 
