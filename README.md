@@ -45,6 +45,7 @@ Cleaned datasets are loaded as CSV files and visualized through interactive char
 
 Folder Structure
 
+```text
 .
 ├── Data/
 │   ├── Raw/             # Original downloaded datasets
