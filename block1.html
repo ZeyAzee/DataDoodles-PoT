@@ -13,7 +13,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
     <script src="js/script.js"></script>
+    <script src="js/block1.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -66,18 +68,24 @@
                 <div class="md:col-span-2 report-text border-l-2 border-ink pl-4">
                     <h3 class="font-serif font-bold text-xl mb-2 text-stamp">Operational Summary:</h3>
                     <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate sequi numquam molestias commodi sit libero, quae harum expedita, sapiente assumenda, ratione ab. Voluptatum modi doloribus ut doloremque voluptatibus provident ipsa? <span class="redacted font-bold">Lorem, ipsum.</span>.
-                    </p>
-                    <p class="text-sm italic">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi itaque quod quasi soluta suscipit aut!
+                        Telling the truth does not carry the same cost everywhere. In some parts of the world, journalism is far more dangerous than in others. This block maps where reporters face the greatest threats, revealing countries where violence, silence, and impunity shape the everyday reality of those who try to inform the public.
                     </p>
                 </div>
                 <div class="bg-paper-dark p-4 font-mono text-base border border-ink flex flex-col justify-center">
                     <span class="uppercase font-bold mb-2 border-b border-ink/50 pb-1">Key Data:</span>
                     <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Total Victims:</span> <span class="font-bold">1400+</span></li>
-                        <li class="flex justify-between"><span>Most Dangerous Zone:</span> <span class="font-bold">Middle East</span></li>
-                        <li class="flex justify-between text-stamp"><span>Impunity:</span> <span class="font-bold">81%</span></li>
+                        <li class="flex justify-between">
+                            <span>Total Victims:</span> 
+                            <span id="key-total-victims" class="font-bold">1407+</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Most Dangerous Country:</span> 
+                            <span id="key-dangerous-zone" class="font-bold">Syria</span>
+                        </li>
+                        <li class="flex justify-between text-stamp">
+                            <span>Global Impunity Rate:</span> 
+                            <span id="key-impunity-rate" class="font-bold">31%</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -89,19 +97,7 @@
                             <span class="font-bold font-serif uppercase">Fig. 1.1: World Map</span>
                             <span class="text-[0.8rem] font-mono">[INTERACTIVE]</span>
                         </div>
-                        <div class="flex-grow bg-blue-50/10 border border-dashed border-gray-300 relative flex items-center justify-center chart-placeholder cursor-pointer group">
-                             <div class="absolute inset-0 flex items-center justify-center opacity-10">
-                                 <svg viewBox="0 0 200 100" class="w-full h-full stroke-ink fill-none">
-                                     <path d="M20,30 Q40,20 60,30 T100,40 T140,30 T180,50" />
-                                     <path d="M20,50 Q60,60 100,50 T180,70" />
-                                 </svg>
-                             </div>
-                             <div class="z-10 text-center">
-                                <span class="bg-paper border border-ink px-3 py-1 font-mono text-sm text-ink shadow-sm block mb-2">
-                                    [ D3.JS MAP VISUALIZATION ]
-                                </span>
-                                <span class="text-xs text-gray-500">Click on a country (e.g., Mexico)</span>
-                             </div>
+                        <div id="map-viz" class="flex-grow bg-blue-50/5 border border-dashed border-ink/20 relative overflow-hidden">
                         </div>
                     </div>
                 </div>
@@ -109,30 +105,20 @@
                 <div class="lg:col-span-4 flex flex-col gap-6 h-full">
                     <div class="evidence-card flex-1 p-4 cursor-pointer hover:border-stamp transition-colors">
                         <div class="flex justify-between mb-2">
-                            <h2 class="font-serif font-bold">Timeline</h2>
-                            <span class="text-[0.7rem] uppercase border border-ink px-1 h-fit">Region Specific</span>
+                            <h2 class="font-serif font-bold">Timeline: <span class="country-name text-stamp">Mexico</span></h2>
                         </div>
-                        <div class="h-32 border-l border-b border-ink relative chart-placeholder bg-white/50">
-                            <div class="absolute bottom-0 left-2 w-2 h-[20%] bg-ink/30"></div>
-                            <div class="absolute bottom-0 left-6 w-2 h-[40%] bg-ink/30"></div>
-                            <div class="absolute bottom-0 left-10 w-2 h-[80%] bg-stamp"></div>
-                            <div class="absolute bottom-0 left-14 w-2 h-[50%] bg-ink/30"></div>
-                            <div class="absolute bottom-0 left-18 w-2 h-[30%] bg-ink/30"></div>
+                        <div id="timeline-viz" class="h-40 relative chart-placeholder bg-white/30">
                         </div>
-                        <p class="text-xs font-mono mt-2 text-gray-500 text-justify">
+                        <p class="text-xs font-mono mt-6 text-gray-500 text-justify">
                             Shows the dynamics/trends of murders only in chosen regions.
                         </p>
                     </div>
 
                     <div class="evidence-card flex-1 p-4 cursor-pointer hover:border-stamp transition-colors">
                         <div class="flex justify-between mb-2">
-                            <h3 class="font-serif font-bold">Impunity Index</h3>
+                            <h3 class="font-serif font-bold">Impunity: <span class="country-name text-stamp">Mexico</span></h3>
                         </div>
-                        <div class="flex items-center justify-center h-32 chart-placeholder">
-                            <div class="w-24 h-24 rounded-full border-[6px] border-ink border-t-stamp flex items-center justify-center relative">
-                                <span class="font-serif font-bold text-xl">90%</span>
-                                <span class="absolute -bottom-16 text-[0.8rem] uppercase text-stamp font-bold">Not Investigated</span>
-                            </div>
+                        <div id="impunity-viz" class="flex items-center justify-center h-56 chart-placeholder">
                         </div>
                     </div>
                 </div>
