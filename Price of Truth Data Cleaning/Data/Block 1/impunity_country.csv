@@ -1,0 +1,128 @@
+country,case_type,count
+Afghanistan,confirmed,46
+Afghanistan,unconfirmed,11
+Albania,confirmed,1
+Angola,confirmed,2
+Argentina,unconfirmed,1
+Azerbaijan,confirmed,3
+Azerbaijan,unconfirmed,1
+Bahrain,confirmed,3
+Bangladesh,confirmed,14
+Bangladesh,unconfirmed,8
+Barbados,confirmed,1
+Belarus,confirmed,1
+Bolivia,unconfirmed,1
+Brazil,confirmed,27
+Brazil,unconfirmed,12
+Bulgaria,unconfirmed,2
+Burkina Faso,confirmed,2
+Burundi,unconfirmed,1
+Cambodia,confirmed,2
+Cambodia,unconfirmed,2
+Cameroon,confirmed,4
+Central African Republic,confirmed,4
+Central African Republic,unconfirmed,1
+Chad,confirmed,3
+Chile,confirmed,1
+China,unconfirmed,2
+Colombia,confirmed,13
+Colombia,unconfirmed,11
+Democratic Republic of the Congo,confirmed,3
+Democratic Republic of the Congo,unconfirmed,5
+Denmark,confirmed,1
+Dominican Republic,confirmed,1
+Dominican Republic,unconfirmed,2
+Ecuador,confirmed,1
+Ecuador,unconfirmed,1
+Egypt,confirmed,11
+El Salvador,confirmed,1
+El Salvador,unconfirmed,1
+Ethiopia,confirmed,2
+Ethiopia,unconfirmed,1
+France,confirmed,9
+Georgia,unconfirmed,1
+Ghana,confirmed,2
+Greece,confirmed,2
+Guatemala,confirmed,1
+Guatemala,unconfirmed,9
+Guinea,confirmed,4
+Haiti,confirmed,10
+Haiti,unconfirmed,4
+Honduras,confirmed,7
+Honduras,unconfirmed,27
+India,confirmed,33
+India,unconfirmed,15
+Indonesia,confirmed,4
+Indonesia,unconfirmed,3
+Iran,confirmed,2
+Iraq,confirmed,59
+Iraq,unconfirmed,13
+Israel and the Occupied Palestinian Territory,confirmed,168
+Israel and the Occupied Palestinian Territory,unconfirmed,1
+Ivory Coast,confirmed,2
+Kazakhstan,confirmed,1
+Kenya,confirmed,1
+Kenya,unconfirmed,2
+Lebanon,confirmed,9
+Lesotho,confirmed,1
+Liberia,unconfirmed,1
+Libya,confirmed,14
+Maldives,confirmed,2
+Mali,confirmed,2
+Malta,confirmed,1
+Mexico,confirmed,45
+Mexico,unconfirmed,67
+Mozambique,confirmed,1
+Mozambique,unconfirmed,2
+Myanmar,confirmed,9
+Myanmar,unconfirmed,1
+Nepal,unconfirmed,4
+Netherlands,unconfirmed,1
+Nicaragua,confirmed,1
+Nigeria,confirmed,7
+Nigeria,unconfirmed,6
+Pakistan,confirmed,48
+Pakistan,unconfirmed,21
+Panama,confirmed,1
+Paraguay,confirmed,4
+Paraguay,unconfirmed,4
+Peru,confirmed,1
+Peru,unconfirmed,6
+Philippines,confirmed,28
+Philippines,unconfirmed,32
+Poland,confirmed,1
+Russia,confirmed,7
+Russia,unconfirmed,1
+Rwanda,confirmed,1
+Rwanda,unconfirmed,1
+Saudi Arabia,confirmed,1
+Sierra Leone,unconfirmed,2
+Slovakia,confirmed,1
+Somalia,confirmed,46
+Somalia,unconfirmed,7
+South Africa,confirmed,1
+South Africa,unconfirmed,1
+South Sudan,confirmed,6
+South Sudan,unconfirmed,4
+Sudan,confirmed,6
+Sudan,unconfirmed,1
+Syria,confirmed,148
+Syria,unconfirmed,13
+Tanzania,confirmed,1
+Tanzania,unconfirmed,1
+Thailand,confirmed,4
+Tunisia,confirmed,1
+Turkey,confirmed,8
+Turkey,unconfirmed,2
+UK,confirmed,1
+USA,confirmed,10
+USA,unconfirmed,1
+Uganda,confirmed,1
+Uganda,unconfirmed,2
+Ukraine,confirmed,26
+Ukraine,unconfirmed,2
+Venezuela,unconfirmed,2
+Vietnam,unconfirmed,1
+Yemen,confirmed,28
+Yemen,unconfirmed,8
+Zambia,unconfirmed,1
