@@ -16,9 +16,9 @@
     };
 
     Promise.all([
-        d3.csv("Data/block2/motive_overview.csv"),
-        d3.csv("Data/block2/motive_type_of_death.csv"),
-        d3.csv("Data/block2/motive_employment.csv")
+        d3.csv("Data/Block 2/motive_overview.csv"),
+        d3.csv("Data/Block 2/motive_type_of_death.csv"),
+        d3.csv("Data/Block 2/motive_employment.csv")
     ]).then(([overview, death, employment]) => {
         state.data.overview = overview;
         state.data.death = death;

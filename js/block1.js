@@ -33,9 +33,9 @@ function getDisplayName(name) {
 // Загрузка данных
 Promise.all([
     d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"),
-    d3.csv("Data/block1/map_country_total.csv"),
-    d3.csv("Data/block1/timeline_country_year.csv"),
-    d3.csv("Data/block1/impunity_country.csv")
+    d3.csv("Data/Block 1/map_country_total.csv"),
+    d3.csv("Data/Block 1/timeline_country.csv"),
+    d3.csv("Data/Block 1/impunity_country.csv")
 ]).then(([world, mapData, timelineData, impunityData]) => {
     fullMapData = mapData;
     fullTimelineData = timelineData;

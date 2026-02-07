@@ -13,10 +13,10 @@
 
     // Загрузка данных
     Promise.all([
-        d3.csv("Data/block3/timeline_global.csv"),
-        d3.csv("Data/block3/bubble_country_year.csv"),
-        d3.csv("Data/block3/status_year.csv"),
-        d3.csv("Data/block3/beeswarm_raw.csv")
+        d3.csv("Data/Block 3/timeline_global.csv"),
+        d3.csv("Data/Block 3/bubble_country_year.csv"),
+        d3.csv("Data/Block 3/status_year.csv"),
+        d3.csv("Data/Block 3/beeswarm_raw.csv")
     ]).then(([timeline, bubbles, status, raw]) => {
         // Парсим и чистим названия прямо в коде
         fullData.timeline = timeline.map(d => ({ 
