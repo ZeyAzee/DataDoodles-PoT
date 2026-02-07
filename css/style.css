@@ -137,3 +137,34 @@ body {
 .report-text p {
   margin-bottom: 1rem;
 }
+
+.brush .selection {
+    fill: #b71c1c;
+    fill-opacity: 0.1;
+    stroke: #b71c1c;
+    stroke-dasharray: 4;
+}
+.brush .handle {
+    fill: #b71c1c;
+    width: 4px;
+}
+
+/* Стилизация скроллбара для Beeswarm */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #2b2b2b; /* Цвет ink */
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #b71c1c; /* Цвет stamp при наведении */
+}
+/* Фиксация высоты, чтобы скролл появился именно внутри карточки */
+#beeswarm-chart {
+    height: 300px; /* Отрегулируйте под вашу сетку */
+    display: block; /* Важно для корректного скролла inline-блоков */
+}
