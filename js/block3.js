@@ -211,7 +211,7 @@
             .append("g").attr("transform", "translate(110,110)");
 
         const pie = d3.pie().value(d => d.count);
-        const arc = d3.arc().innerRadius(0).outerRadius(105);
+        const arc = d3.arc().innerRadius(1).outerRadius(105);
         const colors = d3.scaleOrdinal().domain(["killed", "imprisoned"]).range([COLORS.stamp, COLORS.ink]);
 
         svg.selectAll("path").data(pie(filtered)).join("path")
